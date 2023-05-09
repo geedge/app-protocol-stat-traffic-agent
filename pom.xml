@@ -39,7 +39,7 @@
         <hbase.version>2.2.3</hbase.version>
         <nacos.version>1.2.0</nacos.version>
         <zdjz.tools.version>1.0.8</zdjz.tools.version>
-        <scope.type>provided</scope.type>
+<!--        <scope.type>provided</scope.type>-->
 <!--        <scope.type>compile</scope.type>-->
     </properties>
 

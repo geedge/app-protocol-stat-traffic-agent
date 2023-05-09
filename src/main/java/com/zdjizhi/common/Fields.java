@@ -2,7 +2,7 @@ package com.zdjizhi.common;
 
 
 
-public class Fileds {
+public class Fields {
     private long sessions;
     private long in_bytes;
     private long out_bytes;
@@ -24,7 +24,7 @@ public class Fileds {
     private long s2c_tcp_retransmitted_bytes;
     private String client_ip_sketch;
 
-    public Fileds(long sessions, long in_bytes, long out_bytes, long in_pkts, long out_pkts, long c2s_pkts, long s2c_pkts, long c2s_bytes, long s2c_bytes, long c2s_fragments, long s2c_fragments, long c2s_tcp_lost_bytes, long s2c_tcp_lost_bytes, long c2s_tcp_ooorder_pkts, long s2c_tcp_ooorder_pkts, long c2s_tcp_retransmitted_pkts, long s2c_tcp_retransmitted_pkts, long c2s_tcp_retransmitted_bytes, long s2c_tcp_retransmitted_bytes,String client_ip_sketch) {
+    public Fields(long sessions, long in_bytes, long out_bytes, long in_pkts, long out_pkts, long c2s_pkts, long s2c_pkts, long c2s_bytes, long s2c_bytes, long c2s_fragments, long s2c_fragments, long c2s_tcp_lost_bytes, long s2c_tcp_lost_bytes, long c2s_tcp_ooorder_pkts, long s2c_tcp_ooorder_pkts, long c2s_tcp_retransmitted_pkts, long s2c_tcp_retransmitted_pkts, long c2s_tcp_retransmitted_bytes, long s2c_tcp_retransmitted_bytes, String client_ip_sketch) {
         this.sessions = sessions;
         this.in_bytes = in_bytes;
         this.out_bytes = out_bytes;

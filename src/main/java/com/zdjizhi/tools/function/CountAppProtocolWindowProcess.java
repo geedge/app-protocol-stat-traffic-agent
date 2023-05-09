@@ -5,7 +5,7 @@ import cn.hutool.log.LogFactory;
 import com.alibaba.fastjson2.JSON;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
-import com.zdjizhi.common.Fileds;
+import com.zdjizhi.common.Fields;
 import com.zdjizhi.common.Metrics;
 
 import com.zdjizhi.utils.StringUtil;
@@ -21,7 +21,7 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CountWindowProcess extends ProcessWindowFunction<Tuple3<String, Fileds, String>, String, String, TimeWindow> {
+public class CountAppProtocolWindowProcess extends ProcessWindowFunction<Tuple3<String, Fields, String>, String, String, TimeWindow> {
     private static final Log logger = LogFactory.get();
 
     private long sessions;
@@ -56,11 +56,11 @@ public class CountWindowProcess extends ProcessWindowFunction<Tuple3<String, Fil
     private Map<String, Object> cacheMap = new HashMap<>(20);
 
     @Override
-    public void process(String key, Context context, Iterable<Tuple3<String, Fileds, String>> iterable, Collector<String> collector) throws Exception {
+    public void process(String key, Context context, Iterable<Tuple3<String, Fields, String>> iterable, Collector<String> collector) throws Exception {
         if (StringUtil.isNotBlank(key)) {
             try {
                 HllSketch hllSketch = new HllSketch(12);
-                for (Tuple3<String, Fileds, String> record : iterable) {
+                for (Tuple3<String, Fields, String> record : iterable) {
                     sessions = sessions + record.f1.getSessions();
 
                     in_bytes = in_bytes + record.f1.getIn_bytes();
@@ -94,7 +94,7 @@ public class CountWindowProcess extends ProcessWindowFunction<Tuple3<String, Fil
                 }
 
                 client_ip_sketch = Base64.getEncoder().encodeToString(hllSketch.toUpdatableByteArray());
-                Fileds fileds = new Fileds(sessions, in_bytes, out_bytes, in_pkts, out_pkts, c2s_pkts, s2c_pkts, c2s_bytes, s2c_bytes, c2s_fragments, s2c_fragments, c2s_tcp_lost_bytes, s2c_tcp_lost_bytes, c2s_tcp_ooorder_pkts, s2c_tcp_ooorder_pkts, c2s_tcp_retransmitted_pkts, s2c_tcp_retransmitted_pkts, c2s_tcp_retransmitted_bytes, s2c_tcp_retransmitted_bytes, client_ip_sketch);
+                Fields field = new Fields(sessions, in_bytes, out_bytes, in_pkts, out_pkts, c2s_pkts, s2c_pkts, c2s_bytes, s2c_bytes, c2s_fragments, s2c_fragments, c2s_tcp_lost_bytes, s2c_tcp_lost_bytes, c2s_tcp_ooorder_pkts, s2c_tcp_ooorder_pkts, c2s_tcp_retransmitted_pkts, s2c_tcp_retransmitted_pkts, c2s_tcp_retransmitted_bytes, s2c_tcp_retransmitted_bytes, client_ip_sketch);
 
 
 
@@ -118,7 +118,7 @@ public class CountWindowProcess extends ProcessWindowFunction<Tuple3<String, Fil
                 keyMap.put("data_center", data_center);
                 keyMap.remove("randomNum");
 
-                collector.collect(JSON.toJSONString(new Metrics(keyMap, fileds, context.window().getEnd() / 1000)));
+                collector.collect(JSON.toJSONString(new Metrics(keyMap, field, context.window().getEnd() / 1000)));
                 sessions = 0;
                 in_bytes = 0;
                 out_bytes = 0;

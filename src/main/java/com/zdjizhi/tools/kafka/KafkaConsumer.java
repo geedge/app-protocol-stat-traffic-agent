@@ -1,6 +1,6 @@
 package com.zdjizhi.tools.kafka;
 
-import com.zdjizhi.common.FlowWriteConfig;
+import com.zdjizhi.common.AppProtocolMetricsConfig;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 
@@ -20,13 +20,13 @@ public class KafkaConsumer {
     //消费session-record配置
     private static Properties createConsumerConfig(String groupId) {
         Properties properties = new Properties();
-        properties.put("bootstrap.servers", FlowWriteConfig.SOURCE_KAFKA_SERVERS);
+        properties.put("bootstrap.servers", AppProtocolMetricsConfig.SOURCE_KAFKA_SERVERS);
         properties.put("group.id", groupId);
-        properties.put("session.timeout.ms", FlowWriteConfig.SESSION_TIMEOUT_MS);
-        properties.put("max.poll.records", FlowWriteConfig.MAX_POLL_RECORDS);
-        properties.put("max.partition.fetch.bytes", FlowWriteConfig.MAX_PARTITION_FETCH_BYTES);
+        properties.put("session.timeout.ms", AppProtocolMetricsConfig.SESSION_TIMEOUT_MS);
+        properties.put("max.poll.records", AppProtocolMetricsConfig.MAX_POLL_RECORDS);
+        properties.put("max.partition.fetch.bytes", AppProtocolMetricsConfig.MAX_PARTITION_FETCH_BYTES);
         properties.put("partition.discovery.interval.ms", "10000");
-        CertUtils.chooseCert(FlowWriteConfig.SOURCE_KAFKA_SERVERS, properties);
+        CertUtils.chooseCert(AppProtocolMetricsConfig.SOURCE_KAFKA_SERVERS, properties);
 
         return properties;
     }

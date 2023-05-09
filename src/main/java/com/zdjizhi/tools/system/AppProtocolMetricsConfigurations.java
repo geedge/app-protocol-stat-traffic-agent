@@ -11,7 +11,7 @@ import java.util.Properties;
  * @author Administrator
  */
 
-public final class FlowWriteConfigurations {
+public final class AppProtocolMetricsConfigurations {
 
     private static Properties propDefault = new Properties();
     private static Properties propService = new Properties();
@@ -59,8 +59,8 @@ public final class FlowWriteConfigurations {
 
     static {
         try {
-            propService.load(FlowWriteConfigurations.class.getClassLoader().getResourceAsStream("service_flow_config.properties"));
-            propDefault.load(FlowWriteConfigurations.class.getClassLoader().getResourceAsStream("default_config.properties"));
+            propService.load(AppProtocolMetricsConfigurations.class.getClassLoader().getResourceAsStream("service_flow_config.properties"));
+            propDefault.load(AppProtocolMetricsConfigurations.class.getClassLoader().getResourceAsStream("default_config.properties"));
         } catch (IOException | RuntimeException e) {
             propDefault = null;
             propService = null;

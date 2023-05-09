@@ -3,12 +3,12 @@ package com.zdjizhi.common;
 import java.util.Map;
 
 public class Metrics {
-    private final static  String name = FlowWriteConfig.METRICS_NAME;
+    private final static  String name = AppProtocolMetricsConfig.METRICS_NAME;
     private  Map<String, Object> tags;
-    private Fileds fields;
+    private Fields fields;
     private long timestamp;
 
-    public Metrics(  Map<String, Object> tags, Fileds fields, long timestamp) {
+    public Metrics(Map<String, Object> tags, Fields fields, long timestamp) {
         this.tags = tags;
         this.fields = fields;
         this.timestamp = timestamp;
@@ -26,11 +26,11 @@ public class Metrics {
         this.tags = tags;
     }
 
-    public Fileds getFields() {
+    public Fields getFields() {
         return fields;
     }
 
-    public void setFields(Fileds fields) {
+    public void setFields(Fields fields) {
         this.fields = fields;
     }
 

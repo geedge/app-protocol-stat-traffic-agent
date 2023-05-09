@@ -1,6 +1,6 @@
 package com.zdjizhi.tools.kafka;
 
-import com.zdjizhi.common.FlowWriteConfig;
+import com.zdjizhi.common.AppProtocolMetricsConfig;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer;
 
@@ -17,17 +17,17 @@ public class KafkaProducer {
 
     private static Properties createProducerConfig() {
         Properties properties = new Properties();
-        properties.put("bootstrap.servers", FlowWriteConfig.SINK_KAFKA_SERVERS);
-        properties.put("acks", FlowWriteConfig.PRODUCER_ACK);
-        properties.put("retries", FlowWriteConfig.RETRIES);
-        properties.put("linger.ms", FlowWriteConfig.LINGER_MS);
-        properties.put("request.timeout.ms", FlowWriteConfig.REQUEST_TIMEOUT_MS);
-        properties.put("batch.size", FlowWriteConfig.BATCH_SIZE);
-        properties.put("buffer.memory", FlowWriteConfig.BUFFER_MEMORY);
-        properties.put("max.request.size", FlowWriteConfig.MAX_REQUEST_SIZE);
-        properties.put("compression.type", FlowWriteConfig.PRODUCER_KAFKA_COMPRESSION_TYPE);
+        properties.put("bootstrap.servers", AppProtocolMetricsConfig.SINK_KAFKA_SERVERS);
+        properties.put("acks", AppProtocolMetricsConfig.PRODUCER_ACK);
+        properties.put("retries", AppProtocolMetricsConfig.RETRIES);
+        properties.put("linger.ms", AppProtocolMetricsConfig.LINGER_MS);
+        properties.put("request.timeout.ms", AppProtocolMetricsConfig.REQUEST_TIMEOUT_MS);
+        properties.put("batch.size", AppProtocolMetricsConfig.BATCH_SIZE);
+        properties.put("buffer.memory", AppProtocolMetricsConfig.BUFFER_MEMORY);
+        properties.put("max.request.size", AppProtocolMetricsConfig.MAX_REQUEST_SIZE);
+        properties.put("compression.type", AppProtocolMetricsConfig.PRODUCER_KAFKA_COMPRESSION_TYPE);
 
-        CertUtils.chooseCert(FlowWriteConfig.SINK_KAFKA_SERVERS, properties);
+        CertUtils.chooseCert(AppProtocolMetricsConfig.SINK_KAFKA_SERVERS, properties);
 
         return properties;
     }
@@ -35,7 +35,7 @@ public class KafkaProducer {
 
     public static FlinkKafkaProducer<String> getKafkaProducer() {
         FlinkKafkaProducer<String> kafkaProducer = new FlinkKafkaProducer<String>(
-               FlowWriteConfig.SINK_KAFKA_TOPIC,
+               AppProtocolMetricsConfig.SINK_KAFKA_TOPIC,
                 new SimpleStringSchema(),
                 createProducerConfig(),
                 //sink与所有分区建立连接，轮询写入；

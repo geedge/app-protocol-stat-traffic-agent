@@ -1,9 +1,7 @@
 package com.zdjizhi.common;
 
 import com.alibaba.fastjson2.JSON;
-import com.jayway.jsonpath.JsonPath;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
@@ -159,14 +157,14 @@ public class InterimSessionRecord {
         tagsMap.put("device_id", common_device_id);
         tagsMap.put("common_device_tag", common_device_tag);
         tagsMap.put("protocol_label", common_protocol_label);
-        tagsMap.put("app_full_path", common_protocol_label + "." + common_l7_protocol);
-        tagsMap.put("randomNum",ThreadLocalRandom.current().nextInt(FlowWriteConfig.RANDOM_RANGE_NUM));
+        tagsMap.put("app_full_path", common_app_full_path);
+        tagsMap.put("randomNum",ThreadLocalRandom.current().nextInt(AppProtocolMetricsConfig.RANDOM_RANGE_NUM));
 
         return JSON.toJSONString(tagsMap);
     }
 
 
-    public Fileds getInterimSessionFileds() {
+    public Fields getInterimSessionFileds() {
         long out_bytes;
         long in_bytes;
         long in_pkts;
@@ -183,7 +181,7 @@ public class InterimSessionRecord {
             in_pkts = common_c2s_pkt_diff;
             out_pkts = common_s2c_pkt_diff;
         }
-        return new Fileds(common_sessions, in_bytes, out_bytes, in_pkts, out_pkts, common_c2s_pkt_diff, common_s2c_pkt_diff, common_c2s_byte_diff, common_s2c_byte_diff, 0, 0, 0, 0, 0, 0,
+        return new Fields(common_sessions, in_bytes, out_bytes, in_pkts, out_pkts, common_c2s_pkt_diff, common_s2c_pkt_diff, common_c2s_byte_diff, common_s2c_byte_diff, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, "");
     }
 

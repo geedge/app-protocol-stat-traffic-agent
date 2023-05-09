@@ -284,14 +284,14 @@ public class SessionRecord {
         tagsMap.put("device_id", common_device_id);
         tagsMap.put("common_device_tag", common_device_tag);
         tagsMap.put("protocol_label", common_protocol_label);
-        tagsMap.put("app_full_path", common_protocol_label + "." + common_l7_protocol);
-        tagsMap.put("randomNum",ThreadLocalRandom.current().nextInt(FlowWriteConfig.RANDOM_RANGE_NUM));
+        tagsMap.put("app_full_path", common_app_full_path);
+        tagsMap.put("randomNum",ThreadLocalRandom.current().nextInt(AppProtocolMetricsConfig.RANDOM_RANGE_NUM));
 
         return JSON.toJSONString(tagsMap);
     }
 
 
-    public Fileds getSessionFileds() {
+    public Fields getSessionFileds() {
         long out_bytes;
         long in_bytes;
         long in_pkts;
@@ -308,7 +308,7 @@ public class SessionRecord {
             in_pkts = common_c2s_pkt_diff;
             out_pkts = common_s2c_pkt_diff;
         }
-        return new Fileds(common_sessions, in_bytes, out_bytes, in_pkts, out_pkts, common_c2s_pkt_diff, common_s2c_pkt_diff, common_c2s_byte_diff, common_s2c_byte_diff, common_c2s_ipfrag_num, common_s2c_ipfrag_num, common_c2s_tcp_lostlen, common_s2c_tcp_lostlen, common_c2s_tcp_unorder_num, common_s2c_tcp_unorder_num,
+        return new Fields(common_sessions, in_bytes, out_bytes, in_pkts, out_pkts, common_c2s_pkt_diff, common_s2c_pkt_diff, common_c2s_byte_diff, common_s2c_byte_diff, common_c2s_ipfrag_num, common_s2c_ipfrag_num, common_c2s_tcp_lostlen, common_s2c_tcp_lostlen, common_c2s_tcp_unorder_num, common_s2c_tcp_unorder_num,
                 common_c2s_pkt_retrans, common_s2c_pkt_retrans, common_c2s_byte_retrans, common_s2c_byte_retrans, "");
     }
 
