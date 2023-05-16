@@ -18,7 +18,7 @@ public class SessionRecord {
 
     private long common_sessions;
     private long common_flags;
-    private String common_l7_protocol;
+
 
 
     private long common_c2s_pkt_diff;
@@ -266,13 +266,6 @@ public class SessionRecord {
         this.common_s2c_byte_diff = common_s2c_byte_diff;
     }
 
-    public String getCommon_l7_protocol() {
-        return common_l7_protocol;
-    }
-
-    public void setCommon_l7_protocol(String common_l7_protocol) {
-        this.common_l7_protocol = common_l7_protocol;
-    }
 
     public String getSessionTags() {
         Map<String, Object> tagsMap = new HashMap<String, Object>();

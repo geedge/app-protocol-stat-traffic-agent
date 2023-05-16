@@ -16,10 +16,7 @@ public class InterimSessionRecord {
     private String device_group;
     private String data_center;
 
-    private long common_sessions;
     private long common_flags;
-    private String common_l7_protocol;
-
 
     private long common_c2s_pkt_diff;
     private long common_s2c_pkt_diff;
@@ -27,13 +24,6 @@ public class InterimSessionRecord {
     private long common_s2c_byte_diff;
     private String common_client_ip;
 
-    public String getCommon_l7_protocol() {
-        return common_l7_protocol;
-    }
-
-    public void setCommon_l7_protocol(String common_l7_protocol) {
-        this.common_l7_protocol = common_l7_protocol;
-    }
 
     public long getCommon_vsys_id() {
         return common_vsys_id;
@@ -91,13 +81,7 @@ public class InterimSessionRecord {
         this.data_center = data_center;
     }
 
-    public long getCommon_sessions() {
-        return common_sessions;
-    }
 
-    public void setCommon_sessions(long common_sessions) {
-        this.common_sessions = common_sessions;
-    }
 
     public long getCommon_flags() {
         return common_flags;
@@ -181,7 +165,7 @@ public class InterimSessionRecord {
             in_pkts = common_c2s_pkt_diff;
             out_pkts = common_s2c_pkt_diff;
         }
-        return new Fields(common_sessions, in_bytes, out_bytes, in_pkts, out_pkts, common_c2s_pkt_diff, common_s2c_pkt_diff, common_c2s_byte_diff, common_s2c_byte_diff, 0, 0, 0, 0, 0, 0,
+        return new Fields(0, in_bytes, out_bytes, in_pkts, out_pkts, common_c2s_pkt_diff, common_s2c_pkt_diff, common_c2s_byte_diff, common_s2c_byte_diff, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, "");
     }
 
