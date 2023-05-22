@@ -36,6 +36,7 @@ public class KafkaConsumer {
         FlinkKafkaConsumer<String> kafkaConsumer = new FlinkKafkaConsumer<>(topic,
                 new SimpleStringSchema(), createConsumerConfig(groupId));
 
+
         //随着checkpoint提交，将offset提交到kafka
         kafkaConsumer.setCommitOffsetsOnCheckpoints(true);
 

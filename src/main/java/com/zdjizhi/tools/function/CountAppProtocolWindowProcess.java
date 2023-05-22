@@ -61,10 +61,11 @@ public class CountAppProtocolWindowProcess extends ProcessWindowFunction<Tuple3<
             try {
                 HllSketch hllSketch = new HllSketch(12);
                 for (Tuple3<String, Fields, String> record : iterable) {
+
                     sessions = sessions + record.f1.getSessions();
 
                     in_bytes = in_bytes + record.f1.getIn_bytes();
-                    out_bytes = out_pkts + record.f1.getOut_bytes();
+                    out_bytes = out_bytes + record.f1.getOut_bytes();
 
                     in_pkts = in_pkts + record.f1.getIn_pkts();
                     out_pkts = out_pkts + record.f1.getOut_pkts();

@@ -6,7 +6,7 @@
 
     <groupId>com.zdjizhi</groupId>
     <artifactId>app-protocol-stat-traffic-agent</artifactId>
-    <version>20230425-test</version>
+    <version>20230522</version>
 
     <name>app-protocol-stat-traffic-agent</name>
     <url>http://www.example.com</url>
